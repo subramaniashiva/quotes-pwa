@@ -1,0 +1,19 @@
+{
+  "name": "quotes",
+  "version": "1.0.0",
+  "description": "Quotes viewer - PWA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Siva",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "file-loader": "^0.10.1",
+    "html-webpack-plugin": "^2.28.0",
+    "webpack": "^2.2.1"
+  }
+}
