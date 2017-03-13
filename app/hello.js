@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import World from './world';
+
+import Quotes from './components/quotes';
 
 class Hello extends Component {
-	render() {
-		return <div><World/><h1>Test1</h1></div>
-	}
+  render() {
+    const quote = {
+      value: 'Test Quote',
+      author: 'Siva'
+    }
+    return <div><Quotes quote={quote} /></div>
+  }
 }
 
 export default Hello;
