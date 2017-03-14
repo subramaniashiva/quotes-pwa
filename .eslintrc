@@ -17,5 +17,10 @@
   },
 	"emitError": true,
   "emitWarning": true,
-  "failOnError": true
+  "failOnError": true,
+  rules: {
+    "no-console": 1,
+    "react/prop-types": [2, {ignore: ["dispatch"]}],
+    "comma-dangle": 0
+  }
 }
