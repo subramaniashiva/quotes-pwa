@@ -1,11 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+
+//import { AppContainer } from 'react-hot-loader';
+
+import store from './redux/store';
 
 import Hello from './hello';
 
-const render = (Component) => {
-  ReactDOM.render(
+import 'styles/main.scss';
+
+/*const renderRoot = (Component) => {
+  render(
     <AppContainer>
       <Component/>
     </AppContainer>,
@@ -13,10 +19,10 @@ const render = (Component) => {
   );
 };
 
-render(Hello);
+//render(Hello);
 
 // Hot Module Replacement API
-if (module.hot) {
+/*if (module.hot) {
   module.hot.accept('./hello', () => {
     const NextApp = require('./hello').default;
     ReactDOM.render(
@@ -26,5 +32,15 @@ if (module.hot) {
       document.getElementById('app')
     );
   });
-}
+}*/
+
+
+
+
+render(
+  <Provider store={store}>
+    <Hello />
+  </Provider>,
+  document.getElementById('app')
+)
 
