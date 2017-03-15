@@ -1,6 +1,6 @@
 const PATH = require('path');
 const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
-const webpack = require('webpack');
+const WEBPACK = require('webpack');
 
 const HTML_PLUGIN_CONFIG = new HTML_WEBPACK_PLUGIN({
   template: __dirname + '/app/index.html',
@@ -8,20 +8,10 @@ const HTML_PLUGIN_CONFIG = new HTML_WEBPACK_PLUGIN({
   inject: 'body'
 });
 
-module.exports = {
+const ENV = process.env.NODE_ENV || 'development';
+let configObj = {
 	context: PATH.resolve('app'),
 	entry: [
-    'react-hot-loader/patch',
-    // activate HMR for React
-
-    'webpack-dev-server/client?http://localhost:8080',
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
-
-    'webpack/hot/only-dev-server',
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
-
 		'./index.js'
 	],
   output: {
@@ -42,9 +32,26 @@ module.exports = {
       test: /\.js$/,
       exclude: 'node_modules',
       use: ['babel-loader']
-    }]
+    }, {
+      test: /\.scss$/,
+      use: [{
+          loader: "style-loader" // creates style nodes from JS strings 
+      }, {
+          loader: "css-loader" // translates CSS into CommonJS 
+      }, {
+          loader: "sass-loader" // compiles Sass to CSS 
+      }]
+  }]
   },
-  devServer: {
+  plugins: [
+    HTML_PLUGIN_CONFIG,
+    
+    new WEBPACK.NoEmitOnErrorsPlugin()
+    // do not emit compiled assets that include errors
+  ]
+}
+if(ENV === 'development') {
+  configObj.devServer = {
     hot: true,
     // enable HMR on the server
     historyApiFallback: true,
@@ -53,14 +60,24 @@ module.exports = {
     // match the output path
     publicPath: '/'
     // match the output `publicPath`
-  },
-  plugins: [
-    HTML_PLUGIN_CONFIG,
-    new webpack.HotModuleReplacementPlugin(),
+  };
+  configObj.entry = configObj.entry.concat(['react-hot-loader/patch',
+    // activate HMR for React
+
+    'webpack-dev-server/client?http://localhost:8080',
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+
+    'webpack/hot/only-dev-server'
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates)
+  ]);
+  configObj.plugins = configObj.plugins.concat([
+    new WEBPACK.HotModuleReplacementPlugin(),
     // enable HMR globally
-    new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates]
-    new webpack.NoEmitOnErrorsPlugin(),
-    // do not emit compiled assets that include errors
-    ]
+    new WEBPACK.NamedModulesPlugin()
+    // prints more readable module names in the browser console on HMR updates]])
+  ]);
 }
+
+module.exports = configObj;
