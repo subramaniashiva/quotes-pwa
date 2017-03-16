@@ -1,10 +1,15 @@
 import React from 'react';
-import World from '../app/hello';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
+
+import Main from 'containers/main';
+import store from 'redux/store';
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <World></World>
+    <Provider store={store}>
+      <Main />
+    </Provider>
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });
