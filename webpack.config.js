@@ -46,7 +46,7 @@ let configObj = {
   plugins: [
     HTML_PLUGIN_CONFIG,
     
-    new WEBPACK.NoEmitOnErrorsPlugin()
+    new WEBPACK.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
   ]
 }
@@ -61,7 +61,7 @@ if(ENV === 'development') {
     publicPath: '/'
     // match the output `publicPath`
   };
-  configObj.entry = configObj.entry.concat(['react-hot-loader/patch',
+  configObj.entry.unshift('react-hot-loader/patch',
     // activate HMR for React
 
     'webpack-dev-server/client?http://localhost:8080',
@@ -71,12 +71,18 @@ if(ENV === 'development') {
     'webpack/hot/only-dev-server'
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates)
-  ]);
+  );
   configObj.plugins = configObj.plugins.concat([
     new WEBPACK.HotModuleReplacementPlugin(),
     // enable HMR globally
     new WEBPACK.NamedModulesPlugin()
     // prints more readable module names in the browser console on HMR updates]])
+  ]);
+} else {
+  configObj.plugins = configObj.plugins.concat([
+    new WEBPACK.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
   ]);
 }
 
