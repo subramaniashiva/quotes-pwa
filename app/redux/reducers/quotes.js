@@ -13,6 +13,9 @@ export function get_quote() {
       .then((json) => {
         dispatch(set_loading(false));
         dispatch(quote_received(json));
+      })
+      .catch(() => {
+        dispatch(set_loading(false));
       });
   }
 }
