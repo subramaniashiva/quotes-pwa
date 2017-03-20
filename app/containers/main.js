@@ -14,9 +14,11 @@ class Main extends Component {
     return <div>
       {!this.props.loading? 
         (
-          <div>
-            <Quotes quote={this.props.quotes || {}} />
-            <button onClick={() => this.props.dispatch(get_quote())} >Another Quote</button>
+          <div className='quote'>
+            <div className='quote__container'>
+              <Quotes quote={this.props.quotes || {}} />
+            </div>
+            <button className='quote__btn' onClick={() => this.props.dispatch(get_quote())} >Another Quote</button>
           </div>
         ) : <Loading />
       }
