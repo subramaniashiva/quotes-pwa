@@ -11,16 +11,16 @@ class Main extends Component {
     this.props.dispatch(get_quote());
   }
   render() {
-    return <div>
+    return <div className='quote'>
       {!this.props.loading? 
         (
-          <div className='quote'>
+          <div>
             <div className='quote__container'>
               <Quotes quote={this.props.quotes || {}} />
             </div>
             <button className='quote__btn' onClick={() => this.props.dispatch(get_quote())} >Another Quote</button>
           </div>
-        ) : <Loading />
+        ) : <div className='quote__load'><Loading /></div>
       }
     </div>
   }
