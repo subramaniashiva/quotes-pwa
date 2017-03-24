@@ -1,9 +1,9 @@
 import React from 'react';
 
+import 'styles/components/_loading.scss';
+
 const Loading = () => (
-  <div>
-      <p>Loading... Please wait</p>
-  </div>
+  <div className='loader'>Loading... Please wait</div>
 )
 
 export default Loading;
