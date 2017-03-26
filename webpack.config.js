@@ -1,6 +1,7 @@
 const PATH = require('path');
-const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const WEBPACK = require('webpack');
+const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
+const COPY_WEBPACK_PLUGIN = require('copy-webpack-plugin');
 
 const HTML_PLUGIN_CONFIG = new HTML_WEBPACK_PLUGIN({
   template: __dirname + '/app/index.html',
@@ -82,7 +83,10 @@ if(ENV === 'development') {
   configObj.plugins = configObj.plugins.concat([
     new WEBPACK.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    }),
+    new COPY_WEBPACK_PLUGIN([{
+      from: 'public'
+    }])
   ]);
 }
 
