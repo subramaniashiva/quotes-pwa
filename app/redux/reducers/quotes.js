@@ -4,6 +4,10 @@ import API from 'utils/api';
 import { set_loading } from './loading';
 
 export const QUOTE_RECEIVED = 'quote_received';
+const tempQuote = {
+  quote: 'A computer lets you make more mistakes faster than any other invention in human history, with the possible exceptions of handguns and tequila.',
+  author: 'Mitch Ratcliffe'
+};
 
 export function get_quote() {
   return function(dispatch) {
@@ -16,6 +20,7 @@ export function get_quote() {
       })
       .catch(() => {
         dispatch(set_loading(false));
+        dispatch(quote_received(tempQuote));
       });
   }
 }
