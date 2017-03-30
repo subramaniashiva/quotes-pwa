@@ -2,6 +2,7 @@ module.exports = {
   stripPrefix: 'dist/',
   staticFileGlobs: [
     'dist/*.html',
+    'dist/*.php',
     'dist/manifest.json',
     'dist/*.png',
     'dist/**/!(*map*)'
