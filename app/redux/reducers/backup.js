@@ -4,8 +4,8 @@ import API from 'utils/api';
 
 export const BACKUP_RECEIVED = 'backup_received';
 const tempQuote = {
-  quote: 'A computer lets you make more mistakes faster than any other invention in human history, with the possible exceptions of handguns and tequila.',
-  author: 'Mitch Ratcliffe'
+  content: 'A computer lets you make more mistakes faster than any other invention in human history, with the possible exceptions of handguns and tequila.',
+  title: 'Mitch Ratcliffe'
 };
 
 export function get_backup_quote() {
