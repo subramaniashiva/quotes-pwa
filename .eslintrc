@@ -21,6 +21,7 @@
   rules: {
     "no-console": 1,
     "react/prop-types": [2, {ignore: ["dispatch"]}],
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    quotes: ["error", "single", { "allowTemplateLiterals": true }]
   }
 }

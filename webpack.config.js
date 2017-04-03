@@ -25,10 +25,10 @@ let configObj = {
   },
   module: {
     rules: [{
-      enforce: "pre",
+      enforce: 'pre',
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: "eslint-loader",
+      loader: 'eslint-loader',
     }, {
       test: /\.js$/,
       exclude: 'node_modules',
@@ -36,11 +36,11 @@ let configObj = {
     }, {
       test: /\.scss$/,
       use: [{
-          loader: "style-loader" // creates style nodes from JS strings 
+          loader: 'style-loader' // creates style nodes from JS strings 
       }, {
-          loader: "css-loader" // translates CSS into CommonJS 
+          loader: 'css-loader' // translates CSS into CommonJS 
       }, {
-          loader: "sass-loader" // compiles Sass to CSS 
+          loader: 'sass-loader' // compiles Sass to CSS 
       }]
   }]
   },
