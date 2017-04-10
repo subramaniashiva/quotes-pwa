@@ -11,7 +11,7 @@ let testQuote = {
 describe('Quotes component', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-        <Quotes quote={testQuote}/>
+      <Quotes quote={testQuote}/>
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
