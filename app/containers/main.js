@@ -1,3 +1,9 @@
+/*
+  React Container (stateful component)
+  This is the main container where the application loads
+  Dispatches get_quote and get_backup_quote when the component is mounted
+  Shows either the loading component or quote component based on store state
+*/
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 
@@ -14,9 +20,13 @@ class Main extends Component {
     this.props.dispatch(get_backup_quote());
   }
   componentWillReceiveProps(nextProps) {
+    // Update the local storage when new props is recieved
+    // Write in localStorage only when it is empty
     nextProps.backup && nextProps.backup.length > 1 && 
       !(localStorage.getItem('backup')) && localStorage.setItem('backup', JSON.stringify(nextProps.backup));
   }
+  // Helper function to return the quote
+  // If the quote is not there, then quote from backup is returned
   computeQuote() {
     if(this.props.quotes && this.props.quotes.quote) {
       return this.props.quotes;

@@ -1,6 +1,14 @@
+/*
+  Utils file
+  Helper functions used in the application
+*/
+
+// Strips Html tags from the input text
 export function stripHtmlTags(input = '') {
   return input.replace(/<(?:.|\n)*?>/gm, '');
 }
+
+// Converts the HTML entities into actual text
 export function decodeEntities(input = '') {
   let entitiesMap = {
     '&#8217;': '\'',

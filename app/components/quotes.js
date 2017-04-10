@@ -1,3 +1,7 @@
+/*
+  States component - stateless
+  Strips the HTML contents before showing the quote
+*/
 import React, { PropTypes } from 'react';
 import * as utils from 'utils/utils';
 

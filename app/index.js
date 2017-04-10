@@ -1,3 +1,7 @@
+/*
+  App bootstraps from this file
+  Redux store is passed into the main Component
+*/
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -21,6 +25,7 @@ const renderRoot = (Component) => {
   );
 };
 
+// Renders the main component
 renderRoot(Main);
 
 // Hot Module Replacement API
@@ -37,14 +42,4 @@ if (module.hot) {
     );
   });
 }
-
-
-
-
-// render(
-//   <Provider store={store}>
-//     <Main />
-//   </Provider>,
-//   document.getElementById('app')
-//)
 

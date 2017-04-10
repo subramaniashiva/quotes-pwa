@@ -1,13 +1,17 @@
+/*
+  Used to get the backup quotes from the back-end API
+  This backup quotes will be used by the client to show the quotes when offline
+  When the API call fails, quotes are recieved from a static file
+*/
 import fetch from 'isomorphic-fetch';
 
 import API from 'utils/api';
+import tempQuote from 'utils/backup-quotes';
 
+// Type of Action- When the backup has been received after an API call
 export const BACKUP_RECEIVED = 'backup_received';
-const tempQuote = {
-  content: 'A computer lets you make more mistakes faster than any other invention in human history, with the possible exceptions of handguns and tequila.',
-  title: 'Mitch Ratcliffe'
-};
 
+// Async Action to get the backup quotes from the API
 export function get_backup_quote() {
   return function(dispatch) {
     return fetch(API.root + API.path.popularQuote)
@@ -16,11 +20,13 @@ export function get_backup_quote() {
         dispatch(backup_received(json));
       })
       .catch(() => {
-        dispatch(backup_received([tempQuote]));
+        // On API failure, use backup quotes from static files
+        dispatch(backup_received(tempQuote));
       });
   }
 }
 
+// Action creator - Used when the backup is received from back end API
 export function backup_received(data) {
   return {
     type: BACKUP_RECEIVED,
@@ -28,6 +34,7 @@ export function backup_received(data) {
   }
 }
 
+// Actual reducer for the backup.
 export default function backup(state = [], action) {
   switch(action.type) {
     case BACKUP_RECEIVED:

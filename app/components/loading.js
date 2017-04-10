@@ -1,3 +1,6 @@
+/*
+  Loading component - stateless
+*/
 import React from 'react';
 
 import 'styles/components/_loading.scss';
