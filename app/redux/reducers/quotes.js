@@ -6,6 +6,7 @@
 import fetch from 'isomorphic-fetch';
 
 import API from 'utils/api';
+import { getRandomItemFromArray } from 'utils/utils.js';
 import { set_loading } from './loading';
 
 // Action Type - When the actual quote is received
@@ -41,7 +42,11 @@ export function quote_received(data) {
 export default function quote(state = {}, action) {
   switch(action.type) {
     case QUOTE_RECEIVED:
-      return action.data.length ? Object.assign({}, state, {content: action.data[0].content, title: action.data[0].title}): state;
+      if (action.data.length) {
+        const item = getRandomItemFromArray(action.data);
+        return Object.assign({}, state, {content: item.content.rendered, title: item.title.rendered});
+      }
+      return state;
     default:
       return state;
   }

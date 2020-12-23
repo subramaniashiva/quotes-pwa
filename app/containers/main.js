@@ -28,7 +28,7 @@ class Main extends Component {
   // Helper function to return the quote
   // If the quote is not there, then quote from backup is returned
   computeQuote() {
-    if(this.props.quotes && this.props.quotes.quote) {
+    if(this.props.quotes) {
       return this.props.quotes;
     } else if (this.props.backup && this.props.backup.length) {
       let storedQuote = localStorage.getItem('backup') && JSON.parse(localStorage.getItem('backup'));

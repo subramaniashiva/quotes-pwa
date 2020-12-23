@@ -22,3 +22,9 @@ export function decodeEntities(input = '') {
   }
   return input;
 }
+
+export function getRandomItemFromArray(arr = []) {
+  if (Array.isArray(arr)) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+}
