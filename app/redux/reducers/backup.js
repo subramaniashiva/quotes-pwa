@@ -7,6 +7,7 @@ import fetch from 'isomorphic-fetch';
 
 import API from 'utils/api';
 import tempQuote from 'utils/backup-quotes';
+import { getRandomItemFromArray } from 'utils/utils';
 
 // Type of Action- When the backup has been received after an API call
 export const BACKUP_RECEIVED = 'backup_received';
@@ -35,10 +36,14 @@ export function backup_received(data) {
 }
 
 // Actual reducer for the backup.
-export default function backup(state = [], action) {
+export default function backup(state = {}, action) {
   switch(action.type) {
     case BACKUP_RECEIVED:
-      return [...action.data];
+      if (action.data.length) {
+        const item = getRandomItemFromArray(action.data);
+        return Object.assign({}, state, {content: item.content.rendered, title: item.title.rendered});
+      }
+      return state;
     default:
       return state;
   }

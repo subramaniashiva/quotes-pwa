@@ -22,17 +22,17 @@ class Main extends Component {
   componentWillReceiveProps(nextProps) {
     // Update the local storage when new props is recieved
     // Write in localStorage only when it is empty
-    nextProps.backup && nextProps.backup.length > 1 && 
-      !(localStorage.getItem('backup')) && localStorage.setItem('backup', JSON.stringify(nextProps.backup));
+    nextProps.backup && 
+      localStorage.setItem('backup', JSON.stringify(nextProps.backup));
   }
   // Helper function to return the quote
   // If the quote is not there, then quote from backup is returned
   computeQuote() {
-    if(this.props.quotes) {
+    if(this.props.quotes && this.props.quotes.content) {
       return this.props.quotes;
-    } else if (this.props.backup && this.props.backup.length) {
+    } else if (this.props.backup && this.props.backup.content) {
       let storedQuote = localStorage.getItem('backup') && JSON.parse(localStorage.getItem('backup'));
-      return storedQuote ? storedQuote[Math.floor(Math.random() * storedQuote.length)]: this.props.backup[0];
+      return storedQuote || {};
     } else {
       return {};
     }
@@ -56,7 +56,7 @@ class Main extends Component {
 Main.propTypes = {
   quotes: PropTypes.object,
   loading: PropTypes.bool,
-  backup: PropTypes.array
+  backup: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
