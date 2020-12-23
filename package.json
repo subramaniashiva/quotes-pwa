@@ -4,7 +4,8 @@
   "description": "Quotes viewer - PWA",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors",
+    "start": "node server.js",
+    "dev:start": "webpack-dev-server --progress --colors",
     "lint": "eslint . --ext .js",
     "test": "jest --u",
     "clean": "rm -rf dist/",
@@ -48,6 +49,7 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
