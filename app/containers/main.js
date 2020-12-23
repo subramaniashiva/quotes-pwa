@@ -23,7 +23,7 @@ class Main extends Component {
     // Update the local storage when new props is recieved
     // Write in localStorage only when it is empty
     nextProps.backup && 
-      localStorage.setItem('backup', JSON.stringify(nextProps.backup));
+      window.localStorage && localStorage.setItem('backup', JSON.stringify(nextProps.backup));
   }
   // Helper function to return the quote
   // If the quote is not there, then quote from backup is returned
@@ -31,7 +31,7 @@ class Main extends Component {
     if(this.props.quotes && this.props.quotes.content) {
       return this.props.quotes;
     } else if (this.props.backup && this.props.backup.content) {
-      let storedQuote = localStorage.getItem('backup') && JSON.parse(localStorage.getItem('backup'));
+      let storedQuote = localStorage && localStorage.getItem('backup') && JSON.parse(localStorage.getItem('backup'));
       return storedQuote || {};
     } else {
       return {};
