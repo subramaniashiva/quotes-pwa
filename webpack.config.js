@@ -31,7 +31,7 @@ let configObj = {
       loader: 'eslint-loader',
     }, {
       test: /\.js$/,
-      exclude: 'node_modules',
+      exclude: /node_modules/,
       use: ['babel-loader']
     }, {
       test: /\.scss$/,

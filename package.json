@@ -57,7 +57,9 @@
     "redux-thunk": "^2.2.0"
   },
   "jest": {
-    "moduleNameMapper": { "^.*[.](scss|SCSS)$": "<rootDir>/__test__/emptyModule" },
+    "moduleNameMapper": {
+      "^.*[.](scss|SCSS)$": "<rootDir>/__test__/emptyModule"
+    },
     "moduleDirectories": [
       "node_modules",
       "app"
